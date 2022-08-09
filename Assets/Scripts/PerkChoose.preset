@@ -1,0 +1,308 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PerkChoose
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 390f2579c0548a142a8f132c518b4467, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.size
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[0].name
+    value: Damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[0].describtion
+    value: Increases attack damage
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[0].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: e35f54b45cef7ea4bbb87e040d5e1b08, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[0].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[1].name
+    value: Defence
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[1].describtion
+    value: Increases player defence
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[1].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: d8f428e0d18ee81449ae582370ba3ad0, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[1].type
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[2].name
+    value: Speed
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[2].describtion
+    value: Increases player speed
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[2].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: d39731799a1153a45ab17d02987da8dd, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[2].type
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[3].name
+    value: Reload
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[3].describtion
+    value: Decreases player reload time
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[3].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 9534ef02a52daaf49a1146e9040e63a1, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[3].type
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[4].name
+    value: OverDefence
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[4].describtion
+    value: Increases defence against spells overload. Player will get less effect
+      from spells overload than his opponents
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[4].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 7bfc7764ff29fa8469d09840b54ff2f8, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[4].type
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[5].name
+    value: Health
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[5].describtion
+    value: Increases player health
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[5].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: b57d54e4a563d6d449652c81a6fc14d6, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[5].type
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[6].name
+    value: Stabilisation
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[6].describtion
+    value: Decreases overload gain on each use, but also decreases magic attack
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[6].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: b5c14c012c254ed4b9ae5b48a4b1e8d5, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[6].type
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[7].name
+    value: MagicMight
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[7].describtion
+    value: Increases magic attack and overload radius to some spells
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[7].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 4de622177d4cf664f83c3305a06ae710, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[7].type
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[8].name
+    value: Regeneration
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[8].describtion
+    value: Increases player health regeneration
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[8].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 7e4e5b436d676a04e9ecf5e34b4c788b, type: 3}
+  - target: {fileID: 0}
+    propertyPath: perksProfiles.Array.data[8].type
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.size
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[0].name
+    value: Fireball
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[0].describtion
+    value: 'Shoots highly unstable fireball, on collision which explodes; On overload:
+      Create a huge explosion around player'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[0].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 60e539ae4d1b83b4db2d51ceb11c1980, type: 3}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[0].type
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[0].cost
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[1].name
+    value: Speeder
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[1].describtion
+    value: 'Increases considerably player speed for a period of time; On overload:
+      Increases massively player speed but also decreases health by a lotof time'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[1].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 0efb11b63f12cdf4ca8049d4f96a2352, type: 3}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[1].type
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[1].cost
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[2].name
+    value: Freezer
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[2].describtion
+    value: 'Shoots explosive freezer ball, that slows down enemies; On overload:
+      Creates a huge explosion around player that slows down everyone in the radius'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[2].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: bae184dd01b461b49935b9fb12391566, type: 3}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[2].type
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[2].cost
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[3].name
+    value: Divide Zero
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[3].describtion
+    value: 'Instantly kill an enemy; On overload: kill all enemies in the radius
+      but disables ability to attack and decrease health considerably'
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[3].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: 6315e7ab49ff4b144bc47f3532cb5f7f, type: 3}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[3].type
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[3].cost
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[4].name
+    value: Normal
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[4].describtion
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[4].icon
+    value: 
+    objectReference: {fileID: 2800000, guid: e35f54b45cef7ea4bbb87e040d5e1b08, type: 3}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[4].type
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: spellsProfiles.Array.data[4].cost
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksRawImage
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksOffset
+    value: 150
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magicRawImage
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magicOffset
+    value: 200
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksText
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: perksParent
+    value: 
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
