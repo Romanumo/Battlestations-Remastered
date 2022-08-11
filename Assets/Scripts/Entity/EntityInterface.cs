@@ -172,6 +172,9 @@ public abstract class EntityBehaviour<EntityStats> : MonoBehaviour, IEntityBehav
     [SerializeField] protected EntityStats stats;
     public bool isReloaded = true;
 
+    //OnEvent patter would be useful here if there was some spell that triggers on entity death
+    protected Action OnDeath = default;
+
     protected virtual void Start()
     {
         stats.Init(this.gameObject);
@@ -196,5 +199,10 @@ public abstract class EntityBehaviour<EntityStats> : MonoBehaviour, IEntityBehav
     }
 
     public void ReceiveDamage(AttackInfo attackInfo, Entity sender) => stats.ReceiveDamage(attackInfo, sender, this.transform.position);
-    public abstract void CheckHealth();
+
+    public virtual void CheckHealth()
+    {
+        if (stats.health <= 0 && OnDeath != null)
+            OnDeath.Invoke();
+    }
 }

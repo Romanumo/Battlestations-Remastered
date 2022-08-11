@@ -27,6 +27,9 @@ public class PlayerBehaviour : EntityBehaviour<Player>
         spellProfileManager = GlobalLibrary.spellProfileManager;
         cam = Camera.main.gameObject.transform;
         controller = this.gameObject.GetComponent<Rigidbody>();
+
+        OnDeath += GeneralFunctions.GameOver;
+
         base.Start();
     }
 
@@ -86,8 +89,7 @@ public class PlayerBehaviour : EntityBehaviour<Player>
         maxHealth.sizeDelta = new Vector2(stats.maxHealth * 5, health.sizeDelta.y);
         health.sizeDelta = new Vector2(maxHealth.sizeDelta.x * ((float)((float)stats.health / (float)stats.maxHealth)) ,health.sizeDelta.y);
 
-        if (stats.health <= 0)
-            GeneralFunctions.GameOver();
+        base.CheckHealth();
     }
     #endregion
 

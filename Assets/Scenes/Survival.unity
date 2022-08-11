@@ -673,6 +673,8 @@ MonoBehaviour:
     units:
     - enemy: {fileID: 106063314009548060, guid: 1054a4c1837331444ad230dd75be8617, type: 3}
       amount: 1
+    - enemy: {fileID: 1955709803677179923, guid: f245cd380a21acf4ab10c038c1cfc59a, type: 3}
+      amount: 3
   - name: 1
     units:
     - enemy: {fileID: 106063314009548060, guid: 1054a4c1837331444ad230dd75be8617, type: 3}

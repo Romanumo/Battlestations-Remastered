@@ -29,6 +29,7 @@ public class ProjectileEffectProfile : Profile
     public ProjectileEffect effect;
     public float duration;
     public string keyTipText;
+    [HideInInspector] public int timerIndex;
 
     public bool IsNull() => ProjectileEffectProfile.IsNull(this);
 
@@ -45,4 +46,20 @@ public class ProjectileEffectProfile : Profile
             return true;
         return false;
     }
+}
+
+public class ProjectileEffectIcon
+{
+    public ProjectileEffectProfile profile;
+    public GameObject iconGameObj;
+
+    public ProjectileEffectIcon(ProjectileEffectProfile profile, GameObject iconGameObj)
+    {
+        this.profile = profile;
+        this.iconGameObj = iconGameObj;
+    }
+
+    public float GetTimeRemains() => GeneralFunctions.GetTimer(profile.timerIndex).GetTime();
+
+    public void ExtendTimer(float timeExtension) => GeneralFunctions.GetTimer(profile.timerIndex).ExtendTimer(timeExtension);
 }

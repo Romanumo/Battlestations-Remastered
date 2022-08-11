@@ -70,7 +70,7 @@ public static class BulletFactory
 
             int temp = info.target.armor;
             info.target.armor = 0;
-            GeneralFunctions.AddTimer(delegate () { info.target.armor = temp; }, profile.duration);
+            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.armor = temp; }, profile.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -103,7 +103,7 @@ public static class BulletFactory
 
             Player player = (Player)info.target;
             player.MagicState(true);
-            GeneralFunctions.AddTimer(delegate () { player.MagicState(false); }, profile.duration);
+            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.MagicState(false); }, profile.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -120,7 +120,7 @@ public static class BulletFactory
 
             Player player = (Player)info.target;
             player.BasicState(true);
-            GeneralFunctions.AddTimer(delegate () { player.BasicState(false); }, profile.duration);
+            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.BasicState(false); }, profile.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -135,7 +135,7 @@ public static class BulletFactory
                 return;
 
             info.target.speed -= speedDecrease;
-            GeneralFunctions.AddTimer(delegate () { info.target.speed += speedDecrease; }, profile.duration);
+            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.speed += speedDecrease; }, profile.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);

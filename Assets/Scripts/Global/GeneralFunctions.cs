@@ -10,8 +10,7 @@ public static class GeneralFunctions
     public static bool isCursorOverUI = false;
     static List<Timer> timers;
 
-    public static List<GameObject> effectsIcons;
-    static List<ProjectileEffect> effects;
+    static List<ProjectileEffectIcon> effectIcons;
 
     public const float halfScreen = 920f;
     const float effectIconsOffset = 120f;
@@ -23,8 +22,7 @@ public static class GeneralFunctions
         PerksFactory.Start();
         BulletFactory.Start();
         timers = new List<Timer>();
-        effectsIcons = new List<GameObject>();
-        effects = new List<ProjectileEffect>();
+        effectIcons = new List<ProjectileEffectIcon>();
     }
 
     public static void Update()
@@ -38,12 +36,13 @@ public static class GeneralFunctions
         timers.Add(new Timer(onFinished, timer));
     }
 
-    public static void AddProgressiveTimer(Action onFinished, Action<float> onUpdate, float timer)
+    public static int AddTimerGetIndex(Action onFinished, float timer)
     {
-        timers.Add(new ProgressiveTimer(onFinished, timer, onUpdate));
+        timers.Add(new Timer(onFinished, timer));
+        return timers.Count - 1;
     }
 
-    public static void AddProgressiveTimer(Action onFinished, Action onUpdate, float timer)
+    public static void AddProgressiveTimer(Action onFinished, Action<float> onUpdate, float timer)
     {
         timers.Add(new ProgressiveTimer(onFinished, timer, onUpdate));
     }
@@ -52,6 +51,13 @@ public static class GeneralFunctions
     {
         timers.Remove(timer);
     }
+
+    public static void ExtendTimer(float timeExtension, int index)
+    {
+        timers[index].ExtendTimer(timeExtension);
+    }
+
+    public static Timer GetTimer(int index) => timers[index];
 
     static void TimersUpdate()
     {
@@ -69,15 +75,15 @@ public static class GeneralFunctions
     #region UI
     public static void AddEffectIcon(ProjectileEffectProfile profile)
     {
-        if (effects.Contains(profile.effect))
+        int previousIcon = FindSameEffectIcon(profile.effect);
+        if (previousIcon != -1 && effectIcons[previousIcon].GetTimeRemains() < profile.duration)
+        {
+            float timeExtension = profile.duration - effectIcons[previousIcon].GetTimeRemains();
+            effectIcons[previousIcon].ExtendTimer(timeExtension);
             return;
+        }
 
-        GameObject effectIcon = GameObject.Instantiate(GlobalLibrary.effectsIcons.gameObject, GlobalLibrary.effectsParent.position + new Vector3(effectIconsOffset * effectsIcons.Count + GlobalLibrary.effectsParent.position.x, 0, 0), new Quaternion());
-
-        effects.Add(profile.effect);
-        effectIcon.transform.parent = GlobalLibrary.effectsParent;
-        effectsIcons.Add(effectIcon);
-        effectIcon.GetComponent<RawImage>().texture = profile.icon;
+        GameObject effectIcon = CreateEffectIcon(profile);
 
         //Offset all icons in the right to the left, when this effect dissapears
         AddTimer(delegate ()
@@ -86,6 +92,7 @@ public static class GeneralFunctions
             {
                 effectsIcons[i].transform.position -= new Vector3(effectIconsOffset, 0, 0);
             }
+            effects.Remove(profile);
             effectsIcons.Remove(effectIcon);
             UnityEngine.Object.Destroy(effectIcon);
         }, profile.duration);
@@ -134,6 +141,28 @@ public static class GeneralFunctions
     static void ChangeTextAlpha(Text text, float a)
     {
         text.material.color = new Color(text.material.color.r, text.material.color.g, text.material.color.b, a);
+    }
+
+    static GameObject CreateEffectIcon(ProjectileEffectProfile profile)
+    {
+        GameObject effectIconGameObj = GameObject.Instantiate(GlobalLibrary.effectsIcons.gameObject, GlobalLibrary.effectsParent.position + new Vector3(effectIconsOffset * effectIcons.Count + GlobalLibrary.effectsParent.position.x, 0, 0), new Quaternion());
+
+        ProjectileEffectIcon effectIcon = new ProjectileEffectIcon(profile, effectIconGameObj);
+        effectIcons.Add(effectIcon);
+
+        effectIconGameObj.transform.parent = GlobalLibrary.effectsParent;
+        effectIconGameObj.GetComponent<RawImage>().texture = profile.icon;
+        return effectIconGameObj;
+    }
+
+    static int FindSameEffectIcon(ProjectileEffect effect)
+    {
+        for(int i = 0;i< effectIcons.Count;i++)
+        {
+            if (effectIcons[i].profile.effect == effect)
+                return i;
+        }
+        return -1;
     }
     #endregion
 
@@ -202,6 +231,13 @@ public class Timer
             }
         }
     }
+
+    public void ExtendTimer(float timeExtension)
+    {
+        timer += timeExtension;
+    }
+
+    public float GetTime() => timer;
 }
 
 public class ProgressiveTimer : Timer

@@ -18,6 +18,8 @@ public class EnemyBehaviour : EntityBehaviour<Enemy>
         controller = this.GetComponent<Rigidbody>();
         stats.sqrRange = stats.attackRange * stats.attackRange;
 
+        OnDeath += Death;
+
         CreateHitBar();
         base.Start();
     }
@@ -25,7 +27,7 @@ public class EnemyBehaviour : EntityBehaviour<Enemy>
     void Update()
     {
         Move();
-        Shoot();
+        AimAndShoot();
     }
 
     void Move()
@@ -38,7 +40,7 @@ public class EnemyBehaviour : EntityBehaviour<Enemy>
         controller.AddForce(this.transform.forward * Time.deltaTime * stats.speed * Entity.speedModifier);
     }
 
-    void Shoot()
+    void AimAndShoot()
     {
         if (stats.isInRange(this.transform.position, target.position))
             Shoot(stats);
@@ -48,8 +50,7 @@ public class EnemyBehaviour : EntityBehaviour<Enemy>
     {
         hitPointsBar.transform.localScale = new Vector3(5 * (float)((float)stats.health / (float)stats.maxHealth), 0.5f, 0.5f) / 120f;
 
-        if (stats.health <= 0)
-            Death();
+        base.CheckHealth();
     }
 
     void Death()
@@ -81,6 +82,4 @@ public class EnemyBehaviour : EntityBehaviour<Enemy>
         hitBar.transform.position = this.transform.position + new Vector3(0, 3, 0);
         hitPointsBar = hitBar.transform;
     }
-
-    //public override void ReceiveDamage(AttackInfo attackInfo, Entity sender) => stats.ReceiveDamage(attackInfo, sender, this.transform.position);
 }
