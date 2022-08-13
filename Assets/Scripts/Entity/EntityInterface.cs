@@ -15,6 +15,8 @@ public class Entity
     [NonSerialized] protected IEntityBehaviour owner;
     public const float speedModifier = 1000f;
 
+    protected List<Effect> effects;
+
     public int maxHealth{ get { return _maxHealth; } set { _maxHealth = GeneralFunctions.AdjustToRange(value, 1000); } }
     public float health { get { return _health; } set { _health = GeneralFunctions.AdjustToRange(value, _maxHealth); owner.CheckHealth(); } }
     public int armor { get { return _armor; } set { _armor = GeneralFunctions.AdjustToRange(value, 50); } }
@@ -25,6 +27,7 @@ public class Entity
     public virtual void Init(GameObject owner)
     {
         this.owner = owner.GetComponent<IEntityBehaviour>();
+        effects = new List<Effect>();
         this.owner.CheckHealth();
         bulletStats.Init(this);
     }
@@ -38,8 +41,40 @@ public class Entity
         if (attackInfo.isEffectIncluded())
         {
             OnHitInfo info = new OnHitInfo(sender, this, hitPos);
-            attackInfo.OnHit(info);
+            ManageEffect(attackInfo, info);
         }
+    }
+
+    public void RemoveEffect(Effect effect)
+    {
+        effects.Remove(effect);
+    }
+
+    protected void ManageEffect(AttackInfo attackInfo, OnHitInfo onHitInfo)
+    {
+        if (!(attackInfo.GetBehaviour() is TimedBulletBehaviour))
+            goto ApplyEffect;
+
+        Effect effect = attackInfo.GetProjectileProfile().effect;
+        if (!effects.Contains(effect))
+        {
+            effects.Add(effect);
+            goto ApplyEffect;
+        }
+        else if (effects.Contains(effect))
+        {
+            if (!effect.isStackable)
+            {
+                effect.SetEffectTimer(effect.duration);
+                return;
+            }
+            else if (effect.isStackable)
+                goto ApplyEffect;
+        }
+
+    ApplyEffect:
+        attackInfo.OnHit(onHitInfo);
+        return;
     }
 }
 
@@ -100,8 +135,8 @@ public class Player : Entity
     public void SetProjectileBehaviour(WeaponBehaviour bulletBehaviour) => this.bulletStats.SetBehaviour(bulletBehaviour);
     public void ReceiveOverload(int amount) => GlobalLibrary.spellProfileManager.ReceiveOverload(amount);
     public void ReduceOverloadGain(int amount) => GlobalLibrary.spellProfileManager.ReduceOverloadGain(amount);
-    public void MagicState(bool state) => ownerBehaviour.isMagicBlocked = state;
-    public void BasicState(bool state) => ownerBehaviour.isBasicBlocked = state;
+    public void MagicState(bool state) => ownerBehaviour.isMagicBlocked = !state;
+    public void BasicState(bool state) => ownerBehaviour.isBasicBlocked = !state;
 }
 
 [Serializable]
@@ -134,6 +169,7 @@ public class AttackInfo
         return ProjectileEffectProfile.Null();
     }
 
+    public WeaponBehaviour GetBehaviour() => behaviour;
     public void SetBehaviour() => behaviour = BulletFactory.GetBulletBehaviour(projectileEffect);
     public void SetBehaviour(WeaponBehaviour behaviour) => this.behaviour = behaviour;
     public void OnHit(OnHitInfo onHitInfo) => behaviour.OnHit(onHitInfo);
@@ -159,6 +195,37 @@ public class Bullet
     public Entity GetSender() => sender;
 }
 
+[Serializable]
+public class Effect
+{
+    public ProjectileEffect effectType;
+    public float duration;
+    public bool isStackable;
+    [HideInInspector] public int timerIndex;
+
+    Entity effectHolder;
+
+    public void TimerExpire()
+    {
+        effectHolder.RemoveEffect(this);
+    }
+
+    public void AddHolder(Entity holder)
+    {
+        this.effectHolder = holder;
+    }
+
+    public void SetEffectTimer(float time)
+    {
+        ExtendEffect(time - GeneralFunctions.GetTimer(timerIndex).GetTime());
+    }
+
+    public void ExtendEffect(float timeExtension)
+    {
+        GeneralFunctions.ExtendTimer(timeExtension, timerIndex);
+    }
+}
+
 public interface IEntityBehaviour 
 {
     public abstract void ReceiveDamage(AttackInfo attackInfo, Entity sender);
@@ -172,7 +239,7 @@ public abstract class EntityBehaviour<EntityStats> : MonoBehaviour, IEntityBehav
     [SerializeField] protected EntityStats stats;
     public bool isReloaded = true;
 
-    //OnEvent patter would be useful here if there was some spell that triggers on entity death
+    //OnEvent pattern would be useful here if there was some spell that triggers on entity death
     protected Action OnDeath = default;
 
     protected virtual void Start()

@@ -54,28 +54,12 @@ public static class BulletFactory
     {
         ProjectileEffectProfile profile = projectileProfiles[effect];
         if (time > 0)
-            profile.duration = time;
+            profile.effect.duration = time;
         return profile;
     }
     #endregion
 
     #region BulletStats
-    public static TimedBulletBehaviour ArmorReducer(float duration = -1)
-    {
-        ProjectileEffectProfile profile = GetProjectileProfile(ProjectileEffect.ArmorReducer, duration);
-        Action<OnHitInfo> onHit = delegate (OnHitInfo info)
-        {
-            if (info.target.armor == 0)
-                return;
-
-            int temp = info.target.armor;
-            info.target.armor = 0;
-            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.armor = temp; }, profile.duration);
-        };
-
-        return new TimedBulletBehaviour(onHit, profile);
-    }
-
     public static BulletBehaviour Overloader(int overloadGain)
     {
         ProjectileEffectProfile profile = projectileProfiles[ProjectileEffect.Overloader];
@@ -93,6 +77,24 @@ public static class BulletFactory
         return new BulletBehaviour(onHit);
     }
 
+    public static TimedBulletBehaviour ArmorReducer(float duration = -1)
+    {
+        ProjectileEffectProfile profile = GetProjectileProfile(ProjectileEffect.ArmorReducer, duration);
+        Action<OnHitInfo> onHit = delegate (OnHitInfo info)
+        {
+            if (info.target.armor == 0)
+                return;
+
+            int temp = info.target.armor;
+            info.target.armor = 0;
+
+            profile.effect.AddHolder(info.target);
+            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.armor = temp; profile.effect.TimerExpire(); }, profile.effect.duration);
+        };
+
+        return new TimedBulletBehaviour(onHit, profile);
+    }
+
     public static TimedBulletBehaviour MagicBlocker(float duration = -1)
     {
         ProjectileEffectProfile profile = GetProjectileProfile(ProjectileEffect.MagicBlocker, duration);
@@ -102,8 +104,10 @@ public static class BulletFactory
                 return;
 
             Player player = (Player)info.target;
-            player.MagicState(true);
-            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.MagicState(false); }, profile.duration);
+            player.MagicState(false);
+
+            profile.effect.AddHolder(info.target);
+            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.MagicState(true); profile.effect.TimerExpire(); }, profile.effect.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -119,8 +123,10 @@ public static class BulletFactory
                 return;
 
             Player player = (Player)info.target;
-            player.BasicState(true);
-            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.BasicState(false); }, profile.duration);
+            player.BasicState(false);
+
+            profile.effect.AddHolder(info.target);
+            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.BasicState(true); profile.effect.TimerExpire(); }, profile.effect.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -135,7 +141,9 @@ public static class BulletFactory
                 return;
 
             info.target.speed -= speedDecrease;
-            profile.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.speed += speedDecrease; }, profile.duration);
+
+            profile.effect.AddHolder(info.target);
+            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.speed += speedDecrease; profile.effect.TimerExpire(); }, profile.effect.duration);
         };
 
         return new TimedBulletBehaviour(onHit, profile);

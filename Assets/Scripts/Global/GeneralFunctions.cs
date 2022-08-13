@@ -75,27 +75,27 @@ public static class GeneralFunctions
     #region UI
     public static void AddEffectIcon(ProjectileEffectProfile profile)
     {
-        int previousIcon = FindSameEffectIcon(profile.effect);
-        if (previousIcon != -1 && effectIcons[previousIcon].GetTimeRemains() < profile.duration)
+        int previousIcon = FindSameEffectIcon(profile.effect.effectType);
+        if (previousIcon != -1 && effectIcons[previousIcon].GetTimeRemains() < profile.effect.duration)
         {
-            float timeExtension = profile.duration - effectIcons[previousIcon].GetTimeRemains();
+            float timeExtension = profile.effect.duration - effectIcons[previousIcon].GetTimeRemains();
             effectIcons[previousIcon].ExtendTimer(timeExtension);
             return;
         }
 
-        GameObject effectIcon = CreateEffectIcon(profile);
+        GameObject effectIconGameObj = CreateEffectIcon(profile);
+        ProjectileEffectIcon effectIcon = new ProjectileEffectIcon(profile, effectIconGameObj);
 
         //Offset all icons in the right to the left, when this effect dissapears
         AddTimer(delegate ()
         {
-            for (int i = effectsIcons.IndexOf(effectIcon); i < effectsIcons.Count; i++)
+            for (int i = effectIcons.IndexOf(effectIcon); i < effectIcons.Count; i++)
             {
-                effectsIcons[i].transform.position -= new Vector3(effectIconsOffset, 0, 0);
+                effectIcons[i].iconGameObj.transform.position -= new Vector3(effectIconsOffset, 0, 0);
             }
-            effects.Remove(profile);
-            effectsIcons.Remove(effectIcon);
-            UnityEngine.Object.Destroy(effectIcon);
-        }, profile.duration);
+            effectIcons.Remove(effectIcon);
+            UnityEngine.Object.Destroy(effectIcon.iconGameObj);
+        }, profile.effect.duration);
     }
 
     public static void GameOver()
@@ -159,7 +159,7 @@ public static class GeneralFunctions
     {
         for(int i = 0;i< effectIcons.Count;i++)
         {
-            if (effectIcons[i].profile.effect == effect)
+            if (effectIcons[i].profile.effect.effectType == effect)
                 return i;
         }
         return -1;

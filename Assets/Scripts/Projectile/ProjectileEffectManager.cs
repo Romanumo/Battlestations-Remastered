@@ -7,11 +7,11 @@ public class ProjectileEffectManager : MonoBehaviour
 {
     [SerializeField] ProjectileEffectProfile[] effectsProfiles;
 
-    public ProjectileEffectProfile FindProfile(ProjectileEffect effect)
+    public ProjectileEffectProfile FindProfile(ProjectileEffect effectType)
     {
         foreach(ProjectileEffectProfile profile in effectsProfiles)
         {
-            if(profile.effect == effect)
+            if(profile.effect.effectType == effectType)
             {
                 return profile;
             }
@@ -22,10 +22,10 @@ public class ProjectileEffectManager : MonoBehaviour
     public Dictionary<ProjectileEffect, ProjectileEffectProfile> AssignIconToEffect()
     {
         Dictionary<ProjectileEffect, ProjectileEffectProfile> availabilityList = new Dictionary<ProjectileEffect, ProjectileEffectProfile>();
-        foreach(ProjectileEffect effect in Enum.GetValues(typeof(ProjectileEffect)))
+        foreach(ProjectileEffect effectType in Enum.GetValues(typeof(ProjectileEffect)))
         {
-            ProjectileEffectProfile profile = FindProfile(effect);
-            availabilityList.Add(effect, profile);
+            ProjectileEffectProfile profile = FindProfile(effectType);
+            availabilityList.Add(effectType, profile);
         }
         return availabilityList;
     }

@@ -26,10 +26,8 @@ public class PerkProfile : Profile
 [System.Serializable]
 public class ProjectileEffectProfile : Profile
 {
-    public ProjectileEffect effect;
-    public float duration;
     public string keyTipText;
-    [HideInInspector] public int timerIndex;
+    public Effect effect;
 
     public bool IsNull() => ProjectileEffectProfile.IsNull(this);
 
@@ -59,7 +57,7 @@ public class ProjectileEffectIcon
         this.iconGameObj = iconGameObj;
     }
 
-    public float GetTimeRemains() => GeneralFunctions.GetTimer(profile.timerIndex).GetTime();
+    public float GetTimeRemains() => GeneralFunctions.GetTimer(profile.effect.timerIndex).GetTime();
 
-    public void ExtendTimer(float timeExtension) => GeneralFunctions.GetTimer(profile.timerIndex).ExtendTimer(timeExtension);
+    public void ExtendTimer(float timeExtension) => GeneralFunctions.GetTimer(profile.effect.timerIndex).ExtendTimer(timeExtension);
 }
