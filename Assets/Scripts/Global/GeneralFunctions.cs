@@ -85,17 +85,23 @@ public static class GeneralFunctions
 
         GameObject effectIconGameObj = CreateEffectIcon(profile);
         ProjectileEffectIcon effectIcon = new ProjectileEffectIcon(profile, effectIconGameObj);
+        effectIcons.Add(effectIcon);
 
-        //Offset all icons in the right to the left, when this effect dissapears
-        AddTimer(delegate ()
+        Action OnEffectExpiration = delegate ()
         {
-            for (int i = effectIcons.IndexOf(effectIcon); i < effectIcons.Count; i++)
+            int effectIconIndex = effectIcons.IndexOf(effectIcon);
+            if (effectIcons.Count > 1 && effectIconIndex > 0)
             {
-                effectIcons[i].iconGameObj.transform.position -= new Vector3(effectIconsOffset, 0, 0);
+                for (int i = effectIconIndex; i < effectIcons.Count; i++)
+                {
+                    effectIcons[i].iconGameObj.transform.position -= new Vector3(effectIconsOffset, 0, 0);
+                } 
             }
+
             effectIcons.Remove(effectIcon);
             UnityEngine.Object.Destroy(effectIcon.iconGameObj);
-        }, profile.effect.duration);
+        };
+        profile.effect.OnTimerExpiration += OnEffectExpiration;
     }
 
     public static void GameOver()
@@ -146,9 +152,6 @@ public static class GeneralFunctions
     static GameObject CreateEffectIcon(ProjectileEffectProfile profile)
     {
         GameObject effectIconGameObj = GameObject.Instantiate(GlobalLibrary.effectsIcons.gameObject, GlobalLibrary.effectsParent.position + new Vector3(effectIconsOffset * effectIcons.Count + GlobalLibrary.effectsParent.position.x, 0, 0), new Quaternion());
-
-        ProjectileEffectIcon effectIcon = new ProjectileEffectIcon(profile, effectIconGameObj);
-        effectIcons.Add(effectIcon);
 
         effectIconGameObj.transform.parent = GlobalLibrary.effectsParent;
         effectIconGameObj.GetComponent<RawImage>().texture = profile.icon;

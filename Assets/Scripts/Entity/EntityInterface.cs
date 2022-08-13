@@ -201,6 +201,7 @@ public class Effect
     public ProjectileEffect effectType;
     public float duration;
     public bool isStackable;
+    [HideInInspector] public Action OnTimerExpiration;
     [HideInInspector] public int timerIndex;
 
     Entity effectHolder;
@@ -208,6 +209,8 @@ public class Effect
     public void TimerExpire()
     {
         effectHolder.RemoveEffect(this);
+        if (OnTimerExpiration != null)
+            OnTimerExpiration.Invoke();
     }
 
     public void AddHolder(Entity holder)

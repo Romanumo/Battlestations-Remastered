@@ -1919,8 +1919,8 @@ MonoBehaviour:
     keyTipText: Armor is temporary nullified!
     effect:
       effectType: 1
-      duration: 5
-      isStackable: 0
+      duration: 10
+      isStackable: 1
       timerIndex: 0
   - name: Speed Reducer
     describtion: Speed is temporarily decreased!
