@@ -114,17 +114,6 @@ public class Player : Entity
             ownerBehaviour = owner.GetComponent<PlayerBehaviour>();
     }
 
-    public override void ReceiveDamage(AttackInfo attackInfo, Entity sender, Vector3 hitPos)
-    {
-        base.ReceiveDamage(attackInfo, sender, hitPos);
-        ProjectileEffectProfile profile = attackInfo.GetProjectileProfile();
-        if (!profile.IsNull())
-        {
-            GeneralFunctions.AddEffectIcon(profile);
-            GeneralFunctions.KeyTipShow(profile.keyTipText);
-        }
-    }
-
     public void TemporaryInvincibility()
     {
         int tempArmor = this.armor;
@@ -202,7 +191,7 @@ public class Effect
     public float duration;
     public bool isStackable;
     [HideInInspector] public Action OnTimerExpiration;
-    [HideInInspector] public int timerIndex;
+    [HideInInspector] public Timer timer;
 
     Entity effectHolder;
 
@@ -213,20 +202,10 @@ public class Effect
             OnTimerExpiration.Invoke();
     }
 
-    public void AddHolder(Entity holder)
-    {
-        this.effectHolder = holder;
-    }
-
-    public void SetEffectTimer(float time)
-    {
-        ExtendEffect(time - GeneralFunctions.GetTimer(timerIndex).GetTime());
-    }
-
-    public void ExtendEffect(float timeExtension)
-    {
-        GeneralFunctions.ExtendTimer(timeExtension, timerIndex);
-    }
+    public float GetRemainingTime() => timer.GetTime();
+    public void AddHolder(Entity holder) => this.effectHolder = holder;
+    public void SetEffectTimer(float time) => ExtendEffect(time - timer.GetTime());
+    public void ExtendEffect(float timeExtension) => timer.ExtendTimer(timeExtension);
 }
 
 public interface IEntityBehaviour 

@@ -57,7 +57,5 @@ public class ProjectileEffectIcon
         this.iconGameObj = iconGameObj;
     }
 
-    public float GetTimeRemains() => GeneralFunctions.GetTimer(profile.effect.timerIndex).GetTime();
-
-    public void ExtendTimer(float timeExtension) => GeneralFunctions.GetTimer(profile.effect.timerIndex).ExtendTimer(timeExtension);
+    public void ExtendTimer(float timeExtension) => profile.effect.timer.ExtendTimer(timeExtension);
 }

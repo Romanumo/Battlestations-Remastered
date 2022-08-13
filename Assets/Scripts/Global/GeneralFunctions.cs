@@ -31,15 +31,16 @@ public static class GeneralFunctions
     }
 
     #region Timers
-    public static void AddTimer(Action onFinished, float timer)
+    public static void AddTimer(Action onFinished, float time)
     {
-        timers.Add(new Timer(onFinished, timer));
+        timers.Add(new Timer(onFinished, time));
     }
 
-    public static int AddTimerGetIndex(Action onFinished, float timer)
+    public static Timer AddGetTimer(Action onFinished, float time)
     {
-        timers.Add(new Timer(onFinished, timer));
-        return timers.Count - 1;
+        Timer timer = new Timer(onFinished, time);
+        timers.Add(timer);
+        return timer;
     }
 
     public static void AddProgressiveTimer(Action onFinished, Action<float> onUpdate, float timer)
@@ -76,9 +77,9 @@ public static class GeneralFunctions
     public static void AddEffectIcon(ProjectileEffectProfile profile)
     {
         int previousIcon = FindSameEffectIcon(profile.effect.effectType);
-        if (previousIcon != -1 && effectIcons[previousIcon].GetTimeRemains() < profile.effect.duration)
+        if (previousIcon != -1 && effectIcons[previousIcon].profile.effect.GetRemainingTime() < profile.effect.duration)
         {
-            float timeExtension = profile.effect.duration - effectIcons[previousIcon].GetTimeRemains();
+            float timeExtension = profile.effect.duration - effectIcons[previousIcon].profile.effect.GetRemainingTime();
             effectIcons[previousIcon].ExtendTimer(timeExtension);
             return;
         }

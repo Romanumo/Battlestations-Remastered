@@ -57,6 +57,15 @@ public static class BulletFactory
             profile.effect.duration = time;
         return profile;
     }
+
+    static void OnHitPlayerEffectUI(ProjectileEffectProfile profile, Entity target)
+    {
+        if (!(target is Player))
+            return;
+
+        GeneralFunctions.AddEffectIcon(profile);
+        GeneralFunctions.KeyTipShow(profile.keyTipText);
+    }
     #endregion
 
     #region BulletStats
@@ -89,7 +98,9 @@ public static class BulletFactory
             info.target.armor = 0;
 
             profile.effect.AddHolder(info.target);
-            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.armor = temp; profile.effect.TimerExpire(); }, profile.effect.duration);
+            profile.effect.timer = GeneralFunctions.AddGetTimer(delegate () { info.target.armor = temp; profile.effect.TimerExpire(); }, profile.effect.duration);
+
+            OnHitPlayerEffectUI(profile, info.target);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -107,7 +118,9 @@ public static class BulletFactory
             player.MagicState(false);
 
             profile.effect.AddHolder(info.target);
-            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.MagicState(true); profile.effect.TimerExpire(); }, profile.effect.duration);
+            profile.effect.timer = GeneralFunctions.AddGetTimer(delegate () { player.MagicState(true); profile.effect.TimerExpire(); }, profile.effect.duration);
+
+            OnHitPlayerEffectUI(profile, info.target);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -126,7 +139,9 @@ public static class BulletFactory
             player.BasicState(false);
 
             profile.effect.AddHolder(info.target);
-            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { player.BasicState(true); profile.effect.TimerExpire(); }, profile.effect.duration);
+            profile.effect.timer = GeneralFunctions.AddGetTimer(delegate () { player.BasicState(true); profile.effect.TimerExpire(); }, profile.effect.duration);
+
+            OnHitPlayerEffectUI(profile, info.target);
         };
 
         return new TimedBulletBehaviour(onHit, profile);
@@ -143,7 +158,9 @@ public static class BulletFactory
             info.target.speed -= speedDecrease;
 
             profile.effect.AddHolder(info.target);
-            profile.effect.timerIndex = GeneralFunctions.AddTimerGetIndex(delegate () { info.target.speed += speedDecrease; profile.effect.TimerExpire(); }, profile.effect.duration);
+            profile.effect.timer = GeneralFunctions.AddGetTimer(delegate () { info.target.speed += speedDecrease; profile.effect.TimerExpire(); }, profile.effect.duration);
+
+            OnHitPlayerEffectUI(profile, info.target);
         };
 
         return new TimedBulletBehaviour(onHit, profile);

@@ -1170,6 +1170,7 @@ MonoBehaviour:
       attackInfo:
         _attack: 30
         _projectileEffect: 0
+    effects: []
     _magicAttackAdd: 0
     _overloadDefence: 0
     _regen: 0.05
@@ -1919,9 +1920,8 @@ MonoBehaviour:
     keyTipText: Armor is temporary nullified!
     effect:
       effectType: 1
-      duration: 10
-      isStackable: 1
-      timerIndex: 0
+      duration: 20
+      isStackable: 0
   - name: Speed Reducer
     describtion: Speed is temporarily decreased!
     icon: {fileID: 2800000, guid: 1c35e0b0895a1e4408251e1fc0278fbe, type: 3}
@@ -1930,7 +1930,6 @@ MonoBehaviour:
       effectType: 2
       duration: 20
       isStackable: 1
-      timerIndex: 0
   - name: Basic Block
     describtion: Usage of gun is temporarily blocked!
     icon: {fileID: 2800000, guid: 7e1a87de50d77d54d94b02e7b0f64cf7, type: 3}
@@ -1939,7 +1938,6 @@ MonoBehaviour:
       effectType: 5
       duration: 20
       isStackable: 0
-      timerIndex: 0
   - name: Magic Block
     describtion: Usage of magic  is temporarily blocked!
     icon: {fileID: 2800000, guid: b255c2dc699168740b2e632bd268350b, type: 3}
@@ -1948,7 +1946,6 @@ MonoBehaviour:
       effectType: 4
       duration: 20
       isStackable: 0
-      timerIndex: 0
 --- !u!114 &773487214
 MonoBehaviour:
   m_ObjectHideFlags: 0
