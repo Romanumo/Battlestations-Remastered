@@ -335,6 +335,7 @@
 "Assets/Scripts/Projectile/ProjectileStorage.cs"
 "Assets/Scripts/Projectile/SpellProfileManager.cs"
 "Assets/Scripts/UI/DescribtionWindow.cs"
+"Assets/Scripts/UI/MenuFunctions.cs"
 "Assets/Scripts/UI/MenuTarget.cs"
 "Assets/Scripts/UI/UIFunctions.cs"
 "Assets/Shaders/Bloom/BloomEffect.cs"

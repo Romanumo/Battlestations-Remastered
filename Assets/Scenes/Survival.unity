@@ -1170,7 +1170,6 @@ MonoBehaviour:
       attackInfo:
         _attack: 30
         _projectileEffect: 0
-    effects: []
     _magicAttackAdd: 0
     _overloadDefence: 0
     _regen: 0.05
@@ -1551,7 +1550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 638534318}
   m_Layer: 0
-  m_Name: ---------------Managers-----------------
+  m_Name: ------------MANAGERS--------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3921,7 +3920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1715110467}
   m_Layer: 0
-  m_Name: ---------------Entities-----------------
+  m_Name: ---------ENTITIES---------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4222,7 +4221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840109836}
   m_Layer: 0
-  m_Name: ---------------Environment-----------------
+  m_Name: -------ENVIRONMENT--------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4253,7 +4252,7 @@ GameObject:
   - component: {fileID: 1859878945}
   - component: {fileID: 1859878946}
   m_Layer: 0
-  m_Name: ---------------UI-----------------
+  m_Name: ---------UI-----------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
