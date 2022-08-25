@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Entity\PlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Entity\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\UI\DescribtionWindow.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuFunctions.cs" />
     <Compile Include="Assets\Scripts\Environment\PoissonDiscSampling.cs" />
     <Compile Include="Assets\Scripts\Environment\ObstacleRepositionManager.cs" />
     <Compile Include="Assets\Scripts\Projectile\ProjectileEffectManager.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Assets\Scripts\Projectile\ExplosionProjectile.cs" />
     <Compile Include="Assets\Scripts\Environment\RoundManager.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityInterface.cs" />
-    <Compile Include="Assets\Scripts\UI\MenuFunctions.cs" />
+    <Compile Include="Assets\Scripts\Global\GeneralFunctionsOperator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\3dParticle\3dParticle.shader" />

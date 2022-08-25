@@ -673,8 +673,6 @@ MonoBehaviour:
     units:
     - enemy: {fileID: 106063314009548060, guid: 1054a4c1837331444ad230dd75be8617, type: 3}
       amount: 1
-    - enemy: {fileID: 1955709803677179923, guid: f245cd380a21acf4ab10c038c1cfc59a, type: 3}
-      amount: 3
   - name: 1
     units:
     - enemy: {fileID: 106063314009548060, guid: 1054a4c1837331444ad230dd75be8617, type: 3}
@@ -3950,6 +3948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741931108}
   - component: {fileID: 1741931109}
+  - component: {fileID: 1741931110}
   m_Layer: 0
   m_Name: GeneralManager
   m_TagString: Untagged
@@ -3998,6 +3997,18 @@ MonoBehaviour:
   keyTipText: {fileID: 1931989697}
   effectIcons: {fileID: 265442927}
   gameOverWindow: {fileID: 1309537697}
+--- !u!114 &1741931110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741931107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2109c39e8913e4c8cc2f59aaa6c761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1743756894
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,12 @@ public static class BulletFactory
     public static void Start()
     {
         ProjectileEffectManager projectileProfileManager = GameObject.FindObjectOfType<ProjectileEffectManager>();
+        if (projectileProfileManager == null)
+        {
+            Debug.Log("No Projectile Profile Manager Found");
+            return;
+        }
+
         projectileProfiles = new Dictionary<ProjectileEffect, ProjectileEffectProfile>(projectileProfileManager.AssignIconToEffect());
         projectileDictionary = new Dictionary<ProjectileEffect, BulletBehaviour>(AssignDictionary<ProjectileEffect, BulletBehaviour>());
         spellDictionary = new Dictionary<SpellType, SpellBehaviour>(AssignDictionary<SpellType, SpellBehaviour>());

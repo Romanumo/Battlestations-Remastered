@@ -229,10 +229,9 @@ public class Timer
         if(timer < 0)
         {
             if (onFinished != null)
-            {
                 onFinished.Invoke();
-                GeneralFunctions.RemoveTimer(this);
-            }
+
+            GeneralFunctions.RemoveTimer(this);
         }
     }
 
