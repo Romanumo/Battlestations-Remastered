@@ -325,6 +325,7 @@
 "Assets/Scripts/Environment/PoissonDiscSampling.cs"
 "Assets/Scripts/Environment/RoundManager.cs"
 "Assets/Scripts/Global/GeneralFunctions.cs"
+"Assets/Scripts/Global/GeneralFunctionsOperator.cs"
 "Assets/Scripts/Global/GlobalLibraryAssigner.cs"
 "Assets/Scripts/Global/Profiles.cs"
 "Assets/Scripts/Perks/PerkChoose.cs"
