@@ -11,9 +11,11 @@ public class MenuFunctions : MonoBehaviour
 
     Dictionary<GameObject, TextMesh> menuObjTexts;
     GameObject previousHovered;
+    SettingsManager settings;
 
     private void Start()
     {
+        settings = GameObject.FindObjectOfType<SettingsManager>();
         menuObjTexts = new Dictionary<GameObject, TextMesh>();
         menuObjTexts.Add(settingObj, settingObj.transform.Find("Text").GetComponent<TextMesh>());
         menuObjTexts.Add(playObj, playObj.transform.Find("Text").GetComponent<TextMesh>());
@@ -54,7 +56,7 @@ public class MenuFunctions : MonoBehaviour
         previousHovered = menuObj;
     }
 
-    void OpenSettings() => Debug.Log("Open Settings");
+    void OpenSettings() => settings.OpenSettings();
 
     void PlayGame() => SceneManager.LoadScene(1);
 
@@ -62,7 +64,6 @@ public class MenuFunctions : MonoBehaviour
 
     void SmoothTextAnimation(TextMesh text, bool isAppearing)
     {
-        Debug.Log("Animat");
         int animStart = (isAppearing) ? 1 : 0;
         int animEnd = (!isAppearing) ? 1 : 0;
         GeneralFunctions.AddProgressiveTimer(null, delegate (float timer) { text.color = new Color(text.color.r, text.color.g, text.color.b, Mathf.InverseLerp(animStart, animEnd, timer)); }, 0.5f);

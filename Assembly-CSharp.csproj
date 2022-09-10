@@ -59,7 +59,6 @@
     <Compile Include="Assets\Scripts\Global\GlobalLibraryAssigner.cs" />
     <Compile Include="Assets\Scripts\Projectile\ProjectileFactory.cs" />
     <Compile Include="Assets\Scripts\Global\GeneralFunctionsOperator.cs" />
-    <Compile Include="Assets\Scripts\UI\MenuTarget.cs" />
     <Compile Include="Assets\Scripts\Global\Profiles.cs" />
     <Compile Include="Assets\Scripts\Entity\PlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Entity\EnemyBehaviour.cs" />
@@ -67,6 +66,7 @@
     <Compile Include="Assets\Scripts\UI\MenuFunctions.cs" />
     <Compile Include="Assets\Scripts\Environment\PoissonDiscSampling.cs" />
     <Compile Include="Assets\Scripts\Environment\ObstacleRepositionManager.cs" />
+    <Compile Include="Assets\Scripts\UI\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\Projectile\ProjectileEffectManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIFunctions.cs" />
     <Compile Include="Assets\Scripts\Projectile\SpellProfileManager.cs" />
