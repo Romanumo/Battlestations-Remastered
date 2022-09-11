@@ -933,15 +933,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ee1e319662412942894c1529536550c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.067
+      value: 14.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ee1e319662412942894c1529536550c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.991
+      value: 20.96
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ee1e319662412942894c1529536550c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.73
+      value: 21.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ee1e319662412942894c1529536550c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1980,7 +1980,7 @@ PrefabInstance:
     - target: {fileID: -8347221205978777541, guid: a22657499bd1de44180053d16cc8a56a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 82adb958fe6bf4740b98b1b77ab4d108, type: 2}
+      objectReference: {fileID: 2100000, guid: 84b11aee9af7f9c448bd457a1f5d7902, type: 2}
     - target: {fileID: 919132149155446097, guid: a22657499bd1de44180053d16cc8a56a, type: 3}
       propertyPath: m_Name
       value: BarrelUnited
@@ -1988,11 +1988,11 @@ PrefabInstance:
     - target: {fileID: 7202271454713460447, guid: a22657499bd1de44180053d16cc8a56a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 82adb958fe6bf4740b98b1b77ab4d108, type: 2}
+      objectReference: {fileID: 2100000, guid: 84b11aee9af7f9c448bd457a1f5d7902, type: 2}
     - target: {fileID: 7743480366618694112, guid: a22657499bd1de44180053d16cc8a56a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 82adb958fe6bf4740b98b1b77ab4d108, type: 2}
+      objectReference: {fileID: 2100000, guid: 84b11aee9af7f9c448bd457a1f5d7902, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a22657499bd1de44180053d16cc8a56a, type: 3}
 --- !u!1 &1355462111
